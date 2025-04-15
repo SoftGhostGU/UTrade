@@ -25,6 +25,7 @@ const enter_btn_text="进入";
         position: relative;
         background-color: #ffffff;
         width: 100%; 
+        overflow: hidden;
     }
 
 	.top-section {
@@ -38,22 +39,22 @@ const enter_btn_text="进入";
 	left: 50%;
     top: 76%;
     transform: translate(-50%, -50%);
-	width: 750px;
-	height: 800px;
+	width: 200%;
+	height: 80%;
 	background-color: white;
 	z-index: 0;
 	border-radius: 100%;
 }
 	.logo{
-		width: 120px;
-		height: 120px;
+		width: 30%;
+		aspect-ratio: 1/1;
 		background-color: white;
 		background-image: url('/static/U_logo.png');
 		background-repeat: no-repeat;
 		background-position: center;
 		position: absolute;
 		left: 50%;
-    	top: 35%;
+    	top: 39%;
     	transform: translate(-50%, -50%);
 		border-radius: 50rpx;
 		box-shadow:  5rpx 8rpx 10rpx rgba(22, 22, 22, 0.1);
@@ -88,7 +89,7 @@ const enter_btn_text="进入";
         font-size: 75rpx;
         color: #333333;
         font-weight: bold;
-		padding-top: 350px;
+		padding-top: 90%;
 		
 
     }
@@ -97,15 +98,15 @@ const enter_btn_text="进入";
         font-size: 32rpx;
         color: #949494;
 		padding-top:30rpx;
-        padding-bottom: 250px;
+        padding-bottom: 50%;
 
 
     }
 
     .enter-btn {
-        width: 300rpx;
-        height: 100rpx;
-        line-height: 100rpx;
+        width: 40vw;
+        height: 6vh;
+        line-height: 6vh;
         border-radius: 60rpx;
         background: linear-gradient(90deg, #45aefd 0%, #5160ff 100%);
         color: #eeeeee;
