@@ -239,12 +239,14 @@
 		margin: 110px 0;
 	}
 	
-	/* .card-before {
-		margin: 25px 15px 10px;
-		font-size: 18px;
-	} */
+	.card-before {
+		width: 100%;
+		height: 40px;
+		display: block;
+	}
 	
 	.card-before-left {
+		height: 40px;
 		margin: 5px 15px 10px;
 		font-size: 18px;
 		float: left;
@@ -252,6 +254,7 @@
 	}
 	
 	.card-before-right {
+		height: 40px;
 		margin: 5px 20px 10px;
 		font-size: 16px;
 		color: #888;
@@ -263,10 +266,10 @@
 		width: 80%;
 		height: 25px;
 		margin: 0 auto;
+		margin-top: 10px;
 		text-align: center;
 		align-content: center;
 		background-color: white;
-		margin-bottom: 10px;
 		padding: 15px;
 		border-radius: 20px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
