@@ -2,51 +2,53 @@
 import { ref } from 'vue';
 
 const searchText = ref('');
+const emit = defineEmits(['showTabBar']);
 
 const skills = [
-    {
-        cover: '/static/PR.png',
-        label: '推荐',
-        title: 'PR剪辑',
-        avater: '/static/PRer.png',
-        username: '张伟',
-    },
-    {
-        cover: '/static/pic.png',
-        label: '直播中',
-        title: '摄影',
-        avater: '/static/picer.png',
-        username: '李华',
-    },
-    {
-        cover: '/static/cook.png',
-        label: '热门',
-        title: '厨艺',
-        avater: '/static/cooker.png',
-        username: '赵敏',
-    },
-    {
-        cover: '/static/tatennis.png',
-        label: '推荐',
-        title: '乒乓球',
-        avater: '/static/tatenniser.png',
-        username: '王强',
-    }
+  {
+    cover: '/static/PR.png',
+    label: '推荐',
+    title: 'PR剪辑',
+    avater: '/static/PRer.png',
+    username: '张伟',
+  },
+  {
+    cover: '/static/pic.png',
+    label: '直播中',
+    title: '摄影',
+    avater: '/static/picer.png',
+    username: '李华',
+  },
+  {
+    cover: '/static/cook.png',
+    label: '热门',
+    title: '厨艺',
+    avater: '/static/cooker.png',
+    username: '赵敏',
+  },
+  {
+    cover: '/static/tatennis.png',
+    label: '推荐',
+    title: '乒乓球',
+    avater: '/static/tatenniser.png',
+    username: '王强',
+  }
 ];
 
 // 根据 label 设置背景色
 const getLabelBackgroundColor = (label) => {
-    switch (label) {
-        case '热门':
-            return '#efc958';
-        case '直播中':
-            return '#f46d60';
-        case '推荐':
-            return '#4ac58e';
-        default:
-            return '#ccc'; // 默认背景色
-    }
+  switch (label) {
+    case '热门':
+      return '#efc958';
+    case '直播中':
+      return '#f46d60';
+    case '推荐':
+      return '#4ac58e';
+    default:
+      return '#ccc'; // 默认背景色
+  }
 };
+
 </script>
 
 <template>
@@ -57,7 +59,7 @@ const getLabelBackgroundColor = (label) => {
         <div class="logo">
           <strong style="color: white;" class="Ulogo">U</strong>
           <strong style="color: white;">Trade</strong>
-           ————大学生技能交换市场
+          ————大学生技能交换市场
         </div>
       </div>
       <view class="search-bar">
@@ -100,6 +102,8 @@ const getLabelBackgroundColor = (label) => {
     </view>
   </view>
 </template>
+
+
 
 <style>
 /* 全局样式 */
@@ -154,23 +158,16 @@ header {
   font-weight: 500;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.logo strong{
-    font-size: 60rpx;
+
+.logo strong {
+  font-size: 60rpx;
   font-weight: 1000;
 }
-.logo .Ulogo{
-    font-size: 80rpx;
-    font-weight: 1000;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.header-right {
-  display: flex;
-  align-items: center;
-}
 
-.header-right img {
-  width: 20px;
-  height: 20px;
+.logo .Ulogo {
+  font-size: 80rpx;
+  font-weight: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* 搜索栏样式 */
@@ -190,9 +187,10 @@ header {
   margin-right: 10px;
 }
 
-h3{
+h3 {
   margin-bottom: 1rem;
 }
+
 /* 页面主体样式 */
 .main {
   padding: 20px;
@@ -206,7 +204,6 @@ h3{
 
 .card {
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -247,9 +244,11 @@ h3{
   display: flex;
   align-items: center;
 }
-.profile span{
+
+.profile span {
   font-size: 0.8rem;
 }
+
 .avatar {
   width: 30px;
   height: 30px;
@@ -258,6 +257,7 @@ h3{
   overflow: hidden; /* 确保图像内容不会超出圆形 */
   margin-right: 10px;
 }
+
 .avatar img {
   width: 100%;
   height: 100%;
