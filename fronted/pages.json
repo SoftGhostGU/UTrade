@@ -1,17 +1,51 @@
 {
 	"pages": [
 		{
+
 			"path": "pages/index/index"
 		},
 		{
 			"path": "pages/home/home"
+		},
+		{
+			"path" : "pages/userInfo/userInfo",
+			"style" : 
+			{
+				"navigationBarTitleText" : "个人主页",
+				"enablePullDownRefresh": true
+			}
+
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarTitleText": "UTrade",
+		"navigationBarBackgroundColor": "#ededed",
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle":"custom"
+	},
+	"tabBar": {
+		"selectedColor": "#228BE6",
+		"color": "#228BE6",
+		"list": [
+			{
+				"text": "首页",
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/tabBarIcon/home_icon.png",
+				"selectedIconPath": "/static/tabBarIcon/home_icon_selected.png"
+			},
+			{
+				"text": "添加",
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/tabBarIcon/add_icon.png",
+				"selectedIconPath": "/static/tabBarIcon/home_icon_selected.png"
+			},
+			{
+				"text": "个人主页",
+				"pagePath": "pages/userInfo/userInfo",
+				"iconPath": "/static/tabBarIcon/user_icon.png",
+				"selectedIconPath": "/static/tabBarIcon/user_icon_selected.png"
+			}
+		]
 	}
 }
