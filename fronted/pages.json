@@ -11,7 +11,21 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "个人主页",
-				"enablePullDownRefresh": true
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path" : "pages/myTrade/myTrade",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/myCoin/myCoin",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
 			}
 		}
 	],

@@ -11,6 +11,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "echarts": "^5.6.0",
     "uview-ui": "2.0.38"
   }
 }
