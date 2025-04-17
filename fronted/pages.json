@@ -1,8 +1,11 @@
 {
 	"pages": [
 		{
-
-			"path": "pages/index/index"
+			"path": "pages/index/index",
+			"style" : 
+			{
+				"tabBarStyle":"custom"
+			}
 		},
 		{
 			"path": "pages/home/home"
