@@ -2,7 +2,14 @@
   "hash": "366ba617",
   "configHash": "083e4f9a",
   "lockfileHash": "f0497485",
-  "browserHash": "64049573",
-  "optimized": {},
+  "browserHash": "4a0cb1f0",
+  "optimized": {
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "85f71edf",
+      "needsInterop": false
+    }
+  },
   "chunks": {}
 }
