@@ -2,9 +2,13 @@
 	"pages": [
 		{
 			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "uni-app"
+			"style" : 
+			{
+				"tabBarStyle":"custom"
 			}
+		},
+		{
+			"path": "pages/home/home"
 		},
 		{
 			"path" : "pages/userInfo/userInfo",
@@ -27,6 +31,7 @@
 			{
 				"navigationBarTitleText" : ""
 			}
+
 		}
 	],
 	"globalStyle": {
