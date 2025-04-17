@@ -1,11 +1,10 @@
 <script setup>
 import { ref } from 'vue';
-import testPage from '../test/test.vue';  // 导入 test 页面组件
+import homePage from '../home/home.vue';  // 导入 test 页面组件
 
 const app_name='U Trade!';
 const app_desc="大学生技能交换市场";
 const enter_btn_text="进入";
-
 const isSectionsMoving = ref(false);
 
 const handleEnterClick = () => {
@@ -15,8 +14,8 @@ const handleEnterClick = () => {
 
 <template>
     <view class="container">
-        <view class="test-page-container">
-            <testPage></testPage>
+        <view class="test-page-container" v-show="isSectionsMoving">
+            <homePage></homePage>
         </view>
         
         <view class="content">
@@ -61,7 +60,7 @@ const handleEnterClick = () => {
 
 .top-section {
     height: 50%;
-    background: linear-gradient(180deg, #47acf0 0%, #2196f3 100%);
+    background: linear-gradient(180deg, #47acf0 100%, #2196f3 100%);
     -webkit-mask-image: linear-gradient(to bottom, 
         rgba(0, 0, 0, 1) 0%,
         rgba(0, 0, 0, 1) 60%,
