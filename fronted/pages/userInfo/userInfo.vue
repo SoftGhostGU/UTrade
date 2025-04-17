@@ -52,7 +52,7 @@
 					查看详情 >
 				</view>
 			</view>
-			<view class="card-item">
+			<view class="card-item" @click="jumpToMyTrade">
 				<img src="/static/task_icon.png" alt="release" class="card-img" />
 				<text class="card-title">我的发布</text>
 				<text class="card-subtitle">搜索系统</text>
@@ -67,8 +67,8 @@
 				<text class="card-title">时间币余额</text>
 				<text class="card-subtitle">202个</text>
 			</view>
-			<view class="card-item">
-				（待做）balance-line
+			<view class="card-item-chart">
+				<LineChart class="line-chart"/>
 			</view>
 		</view>
 	</view>
@@ -76,6 +76,14 @@
 
 <script setup>
 	const app_name = 'UTrade!';
+	import LineChart from '/components/line-chart.vue';
+	
+	const jumpToMyTrade = () => {
+		console.log("Jump To My Trade.")
+		uni.navigateTo({
+			url: '/pages/myTrade/myTrade'
+		})
+	}
 </script>
 
 <style scoped>
@@ -219,7 +227,8 @@
 		/* background-color: pink; */
 		text-align: center;
 		align-content: center;
-		justify-content: center; /* 垂直居中 */
+		justify-content: center;
+		/* 垂直居中 */
 		align-items: center;
 		border-radius: 25px;
 		font-size: 10px;
@@ -238,13 +247,13 @@
 		position: relative;
 		margin: 110px 0;
 	}
-	
+
 	.card-before {
 		width: 100%;
 		height: 40px;
 		display: block;
 	}
-	
+
 	.card-before-left {
 		height: 40px;
 		margin: 5px 15px 10px;
@@ -252,7 +261,7 @@
 		float: left;
 		font-weight: bold;
 	}
-	
+
 	.card-before-right {
 		height: 40px;
 		margin: 5px 20px 10px;
@@ -274,7 +283,7 @@
 		border-radius: 20px;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
-	
+
 	.card-img {
 		height: 90%;
 		margin: auto 0;
@@ -292,6 +301,23 @@
 		font-size: 14px;
 		color: #888;
 		float: right;
+	}
+	
+	.card-item-chart {
+		width: 80%;
+		height: 150px;
+		margin: 0 auto;
+		margin-top: 10px;
+		text-align: center;
+		align-content: center;
+		background-color: white;
+		padding: 15px;
+		border-radius: 20px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+	
+	.line-chart {
+		transform: translate(5%, -15%);
 	}
 
 	.footer-nav {
