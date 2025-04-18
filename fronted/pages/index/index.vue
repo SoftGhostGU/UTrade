@@ -29,21 +29,16 @@
   
   const handleEnterClick = () => {
     isSectionsMoving.value = true;
-    uni.hideTabBar();  // 点击进入按钮时隐藏原生 tabBar
-    setTimeout(onTransitionEnd, 750);  // 1秒后触发 onTransitionEnd
+    setTimeout(onTransitionEnd, 750);  
   };
   
   const onTransitionEnd = () => {
-    uni.showTabBar();  // 显示原生 tabBar
+    uni.switchTab({ 
+    url: '/pages/home/home' 
+  });
   };
   
-  onMounted(() => {
-    uni.hideTabBar();  // 页面加载时隐藏原生 tabBar
-  });
-  
-  onUnmounted(() => {
-    uni.showTabBar();  // 页面卸载时显示原生 tabBar
-  });
+
   </script>
   
   <style scoped>
@@ -51,7 +46,6 @@
     position: relative;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
   }
   
   .test-page-container {

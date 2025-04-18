@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 
 const searchText = ref('');
-const emit = defineEmits(['showTabBar']);
 
 const skills = [
   {
@@ -32,7 +31,7 @@ const skills = [
     title: '乒乓球',
     avater: '/static/tatenniser.png',
     username: '王强',
-  }
+  },
 ];
 
 // 根据 label 设置背景色
