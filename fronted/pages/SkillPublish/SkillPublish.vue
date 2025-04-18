@@ -208,7 +208,7 @@ const uploadImage = () => {
 }
 
 .publish-btn {
-  margin-top: 2rem;
+  margin-top: 4rem;
   width: 100%;
   background: linear-gradient(to right, #8a8ce7, #de80f3);
   color: white;
