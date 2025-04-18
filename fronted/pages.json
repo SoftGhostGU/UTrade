@@ -44,7 +44,7 @@
 				"text": "添加",
 				"pagePath":  "pages/SkillPublish/SkillPublish",
 				"iconPath": "/static/tabBarIcon/add_icon.png",
-				"selectedIconPath": "/static/tabBarIcon/home_icon_selected.png"
+				"selectedIconPath": "/static/tabBarIcon/add_icon.png"
 			},
 			{
 				"text": "个人主页",
