@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="test-page-container" v-show="isSectionsMoving">
-			<homePage @showTabBar="showTabBar"></homePage>
+			<homePage ></homePage>
 		</view>
 
 		<view class="content">
