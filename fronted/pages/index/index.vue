@@ -21,8 +21,6 @@
 <script setup>
 	import {
 		ref,
-		onMounted,
-		onUnmounted
 	} from 'vue';
 	import homePage from '../home/home.vue'; // 导入 home 页面组件
 
@@ -31,9 +29,6 @@
 	const enter_btn_text = "进入";
 	const isSectionsMoving = ref(false);
 	
-	const showTabBar = () => {
-		console.log("Show Tab Bar.")
-	}
 
 	const handleEnterClick = () => {
 		isSectionsMoving.value = true;

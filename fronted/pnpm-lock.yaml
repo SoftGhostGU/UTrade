@@ -8,16 +8,39 @@ importers:
 
   .:
     dependencies:
+      echarts:
+        specifier: ^5.6.0
+        version: 5.6.0
       uview-ui:
         specifier: 2.0.38
         version: 2.0.38
 
 packages:
 
+  echarts@5.6.0:
+    resolution: {integrity: sha512-oTbVTsXfKuEhxftHqL5xprgLoc0k7uScAwtryCgWF6hPYFLRwOUHiFmHGCBKP5NPFNkDVopOieyUqYGH8Fa3kA==}
+
+  tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+
   uview-ui@2.0.38:
     resolution: {integrity: sha512-6egHDf9lXHKpG3hEjRE0vMx4+VWwKk/ReTf5x18KrIKqdvdPRqO3+B8Unh7vYYwrIxzAWIlmhZ9RJpKI/4UqPQ==}
     engines: {HBuilderX: ^3.1.0}
 
+  zrender@5.6.1:
+    resolution: {integrity: sha512-OFXkDJKcrlx5su2XbzJvj/34Q3m6PvyCZkVPHGYpcCJ52ek4U/ymZyfuV1nKE23AyBJ51E/6Yr0mhZ7xGTO4ag==}
+
 snapshots:
 
+  echarts@5.6.0:
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.6.1
+
+  tslib@2.3.0: {}
+
   uview-ui@2.0.38: {}
+
+  zrender@5.6.1:
+    dependencies:
+      tslib: 2.3.0
