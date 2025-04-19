@@ -23,10 +23,21 @@
 				</view>
 			</view>
 		</view>
+		<view class="balance-box">
+			<view class="balance-box-title">
+				近日收支曲线
+			</view>
+			<lineChartShadow class="balance-line"/>
+		</view>
+		<!-- <view class="queations-box">
+
+		</view> -->
 	</view>
 </template>
 
 <script setup>
+	import lineChartShadow from "/components/line-chart-shadow.vue"
+	
 	const count = 500;
 </script>
 
@@ -37,6 +48,7 @@
 	}
 
 	.header {
+		height: 50px;
 		flex: 1;
 		display: flex;
 		flex-direction: row;
@@ -107,7 +119,7 @@
 		width: 25%;
 		margin: 0 auto;
 	}
-	
+
 	.now-coin {
 		width: 85%;
 		height: 100px;
@@ -118,7 +130,7 @@
 		transform: translateX(-50%);
 		border-radius: 15px;
 	}
-	
+
 	.white-box {
 		width: 90%;
 		height: 80px;
@@ -130,7 +142,7 @@
 		background: linear-gradient(90deg, #fff, #c9bdf4);
 		border-radius: 15px;
 	}
-	
+
 	.now-coin-word {
 		line-height: 20px;
 		font-size: 20px;
@@ -139,12 +151,50 @@
 		top: 30px;
 		left: 15px;
 	}
-	
+
 	.now-coin-img {
 		width: 50px;
 		height: 50px;
 		position: absolute;
 		right: 20px;
 		top: 15px;
+	}
+
+	.balance-box {
+		width: 85%;
+		height: 180px;
+		background-color: #404261;
+		position: absolute;
+		top: 230px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius: 15px;
+	}
+	
+	.balance-box-title {
+		color: white;
+		margin: 10px;
+		margin-left: 15px;
+		font-weight: bold;
+	}
+	
+	.balance-line {
+		width: 90%;
+		height: 100%;
+		position: absolute;
+		top: calc(50% - 10px);
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.queations-box {
+		width: 85%;
+		height: 100px;
+		background: linear-gradient(0deg, #3e3f63, #373758);
+		position: absolute;
+		top: 350px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius: 15px;
 	}
 </style>
