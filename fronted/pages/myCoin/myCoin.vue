@@ -1,7 +1,7 @@
 <template>
 	<view class="all">
 		<view class="header">
-			<view class="previous">
+			<view class="previous" @click="jumpBack">
 				<img src="/static/previous_icon.png" alt="" class="previous-img" />
 			</view>
 			<view class="header-title">
@@ -27,17 +27,37 @@
 			<view class="balance-box-title">
 				近日收支曲线
 			</view>
-			<lineChartShadow class="balance-line"/>
+			<lineChartShadow class="balance-line" />
 		</view>
-		<!-- <view class="queations-box">
-
-		</view> -->
+		<view class="questions-box">
+			<view class="balance-box-title">
+				时间币不足？
+			</view>
+			<view class="question-list">
+				<view class="question-item">
+					<text class="question-answer">· 可通过完成特定任务获得</text>
+				</view>
+				<view class="question-item">
+					<text class="question-answer">· 可以购买直接获得</text>
+				</view>
+				<view class="pay-button">
+					充值入口
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script setup>
 	import lineChartShadow from "/components/line-chart-shadow.vue"
 	
+	const jumpBack = () => {
+		console.log("Jump back.")
+		uni.switchTab({
+			url: '/pages/userInfo/userInfo'
+		});
+	}
+
 	const count = 500;
 </script>
 
@@ -58,7 +78,7 @@
 		display: block;
 		width: 30px;
 		height: 30px;
-		margin-top: 20px;
+		margin-top: 40px;
 		margin-left: 15px;
 		margin-bottom: 10px;
 		line-height: 30px;
@@ -80,14 +100,14 @@
 		text-align: center;
 		align-content: center;
 		line-height: 30px;
-		margin-top: 20px;
+		margin-top: 40px;
 	}
 
 	.subtitle {
 		width: 90%;
 		display: flex;
 		flex-direction: row;
-		margin: 0 auto;
+		margin: 20px auto 0px;
 	}
 
 	.subtitle-content {
@@ -122,8 +142,8 @@
 
 	.now-coin {
 		width: 85%;
-		height: 100px;
-		margin: 30px auto 0px;
+		height: 130px;
+		margin: 40px auto 0px;
 		background-color: #7a6eeb;
 		position: absolute;
 		left: 50%;
@@ -133,7 +153,7 @@
 
 	.white-box {
 		width: 90%;
-		height: 80px;
+		height: 80%;
 		margin: 0px auto;
 		position: absolute;
 		left: 50%;
@@ -148,7 +168,8 @@
 		font-size: 20px;
 		font-weight: bold;
 		position: absolute;
-		top: 30px;
+		top: 50%;
+		transform: translateY(-50%);
 		left: 15px;
 	}
 
@@ -157,27 +178,28 @@
 		height: 50px;
 		position: absolute;
 		right: 20px;
-		top: 15px;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 
 	.balance-box {
 		width: 85%;
-		height: 180px;
+		height: 200px;
+		margin-top: 210px;
 		background-color: #404261;
 		position: absolute;
-		top: 230px;
 		left: 50%;
 		transform: translateX(-50%);
 		border-radius: 15px;
 	}
-	
+
 	.balance-box-title {
 		color: white;
 		margin: 10px;
 		margin-left: 15px;
 		font-weight: bold;
 	}
-	
+
 	.balance-line {
 		width: 90%;
 		height: 100%;
@@ -187,14 +209,42 @@
 		transform: translate(-50%, -50%);
 	}
 
-	.queations-box {
+	.questions-box {
 		width: 85%;
-		height: 100px;
+		height: 160px;
 		background: linear-gradient(0deg, #3e3f63, #373758);
 		position: absolute;
-		top: 350px;
+		margin-top: 440px;
 		left: 50%;
 		transform: translateX(-50%);
+		border-radius: 15px;
+	}
+	
+	
+	.question-list {
+	  margin-left: 10px;
+	}
+	
+	.question-title {
+	  font-size: 16px;
+	  color: white;
+	}
+	
+	.question-answer {
+	  font-size: 14px;
+	  color: #ccc;
+	}
+	
+	.pay-button {
+		width: calc(100% - 30px);
+		height: 30px;
+		background: linear-gradient(90deg, #7ca9f5, #965fee);
+		text-align: center;
+		line-height: 30px;
+		margin: 10px;
+		margin-top: 20px;
+		color: white;
+		font-size: 16px;
 		border-radius: 15px;
 	}
 </style>
