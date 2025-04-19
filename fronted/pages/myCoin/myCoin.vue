@@ -1,7 +1,7 @@
 <template>
 	<view class="all">
 		<view class="header">
-			<view class="previous">
+			<view class="previous" @click="jumpBack">
 				<img src="/static/previous_icon.png" alt="" class="previous-img" />
 			</view>
 			<view class="header-title">
@@ -50,6 +50,13 @@
 
 <script setup>
 	import lineChartShadow from "/components/line-chart-shadow.vue"
+	
+	const jumpBack = () => {
+		console.log("Jump back.")
+		uni.switchTab({
+			url: '/pages/userInfo/userInfo'
+		});
+	}
 
 	const count = 500;
 </script>

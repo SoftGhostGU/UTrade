@@ -57,7 +57,7 @@
 				<text class="card-title">我的发布</text>
 				<text class="card-subtitle">搜索系统</text>
 			</view>
-			<view class="card-item">
+			<view class="card-item" @click="jumpToMyCoin">
 				<img src="/static/transaction_icon.png" alt="transaction" class="card-img" />
 				<text class="card-title">我的交换记录</text>
 				<text class="card-subtitle">76250条</text>
@@ -82,6 +82,13 @@
 		console.log("Jump To My Trade.")
 		uni.navigateTo({
 			url: '/pages/myTrade/myTrade'
+		})
+	}
+	
+	const jumpToMyCoin = () => {
+		console.log("Jump To My Coin.")
+		uni.navigateTo({
+			url: '/pages/myCoin/myCoin'
 		})
 	}
 </script>
