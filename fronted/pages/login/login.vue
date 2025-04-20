@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="test-page-container" v-show="isSectionsMoving">
-			<homePage></homePage>
+			<homePage ></homePage>
 		</view>
 
 		<view class="content">
@@ -12,7 +12,7 @@
 				<div class="logo"></div>
 				<div class="app-name">{{ app_name }}</div>
 				<div class="app-desc">{{ app_desc }}</div>
-				<button class="enter-btn" @click="handleWeixinLogin">微信登录</button>
+				<button class="enter-btn" @click="handleEnterClick">{{ enter_btn_text }}</button>
 			</view>
 		</view>
 	</view>
@@ -26,47 +26,18 @@
 
 	const app_name = 'U Trade!';
 	const app_desc = "大学生技能交换市场";
+	const enter_btn_text = "进入";
 	const isSectionsMoving = ref(false);
 	
-	// 微信登录处理函数
-	const handleWeixinLogin = () => {
-		uni.login({
-			"provider": "weixin",
-			"onlyAuthorize": true, 
-			success: function(event){
-				const {code} = event;
-				// 客户端成功获取授权临时票据（code）,向业务服务器发起登录请求
-				uni.request({
-					url: 'https://www.example.com/loginByWeixin', // 替换为实际接口地址
-					data: {
-						code: event.code
-					},
-					success: (res) => {
-						uni.setStorageSync('token', res.data.token);
-						isSectionsMoving.value = true;
-						setTimeout(onTransitionEnd, 750);
-					},
-					fail: (err) => {
-						uni.showToast({
-							title: '登录请求失败',
-							icon: 'none'
-						});
-					}
-				});
-			},
-			fail: function (err) {
-				uni.showToast({
-					title: '微信授权失败',
-					icon: 'none'
-				});
-				console.error('微信登录失败:', err);
-			}
-		});
+
+	const handleEnterClick = () => {
+		isSectionsMoving.value = true;
+		setTimeout(onTransitionEnd, 750);
 	};
 
 	const onTransitionEnd = () => {
-		uni.navigateTo({
-			url: '/pages/login/login'
+		uni.switchTab({
+			url: '/pages/home/home'
 		});
 	};
 </script>
