@@ -1,12 +1,20 @@
 {
 	"pages": [
 		{
+			"path": "pages/login/login",
+			"style" : 
+			{
+				"tabBarStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/index/index",
 			"style" : 
 			{
 				"tabBarStyle":"custom"
 			}
 		},
+
 		{
 			"path": "pages/home/home"
 		},
