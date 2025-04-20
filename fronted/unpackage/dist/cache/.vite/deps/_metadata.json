@@ -1,8 +1,25 @@
 {
-  "hash": "0bc7f297",
-  "configHash": "a9e179cb",
-  "lockfileHash": "f1b39a87",
-  "browserHash": "c84e15f9",
-  "optimized": {},
-  "chunks": {}
+  "hash": "21d96e2e",
+  "configHash": "083e4f9a",
+  "lockfileHash": "38c884bd",
+  "browserHash": "26489981",
+  "optimized": {
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "fa41b893",
+      "needsInterop": false
+    },
+    "@kousum/semi-ui-vue": {
+      "src": "../../../../../node_modules/@kousum/semi-ui-vue/dist/index.js",
+      "file": "@kousum_semi-ui-vue.js",
+      "fileHash": "c59f35b9",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-UV5CTPV7": {
+      "file": "chunk-UV5CTPV7.js"
+    }
+  }
 }
