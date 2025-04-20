@@ -11,7 +11,7 @@
 		<view class="subtitle">
 			<view class="subtitle-content active">我的时间币</view>
 			<view class="subtitle-content">历史记录</view>
-			<view class="subtitle-content">余额</view>
+			<view class="subtitle-content" @click="jumpToBalance">余额</view>
 		</view>
 		<view class="now-coin">
 			<view class="white-box">
@@ -56,6 +56,13 @@
 		uni.switchTab({
 			url: '/pages/userInfo/userInfo'
 		});
+	}
+	
+	const jumpToBalance = () => {
+		console.log("Jump To Balance.")
+		uni.navigateTo({
+			url: '/pages/balance/balance'
+		})
 	}
 
 	const count = 500;

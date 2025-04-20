@@ -62,7 +62,7 @@
 				<text class="card-title">我的交换记录</text>
 				<text class="card-subtitle">76250条</text>
 			</view>
-			<view class="card-item">
+			<view class="card-item" @click="jumpToBalance">
 				<img src="/static/coin_icon.png" alt="balance" class="card-img" />
 				<text class="card-title">时间币余额</text>
 				<text class="card-subtitle">202个</text>
@@ -89,6 +89,13 @@
 		console.log("Jump To My Coin.")
 		uni.navigateTo({
 			url: '/pages/myCoin/myCoin'
+		})
+	}
+	
+	const jumpToBalance = () => {
+		console.log("Jump To Balance.")
+		uni.navigateTo({
+			url: '/pages/balance/balance'
 		})
 	}
 </script>
