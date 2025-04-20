@@ -2,35 +2,35 @@
 	<view class="all">
 		<view class="header">
 			<view class="previous" @click="jumpBack">
-			    <img src="/static/previous_icon.png" alt="" class="previous-img"/>
+				<img src="/static/previous_icon.png" alt="" class="previous-img" />
 			</view>
-					<view class="header-title">
-						互换管理
-					</view>
+			<view class="header-title">
+				互换管理
 			</view>
-			<view class="body">
-				<view class="tabs">
-					<button class="tab-button active">全部</button>
-					<button class="tab-button">已接受</button>
-					<button class="tab-button">已拒绝</button>
-					<button class="tab-button">接收中</button>
-				</view>
-				<view class="content" v-for="item in items" :key="item.id">
-					<view class="card">
-						<view class="user-image">
-							<img :src="item.img" alt="" class="user-image" />
-						</view>
-						<view class="card-header">
-							<view class="card-title">{{ item.title }}</view>
-							<view class="card-body">
-								<view>{{ item.time }}</view>
-							</view>
-						</view>
-						<view class="card-status">{{ item.status }}</view>
+		</view>
+		<view class="body">
+			<view class="tabs">
+				<button class="tab-button active">全部</button>
+				<button class="tab-button">已接受</button>
+				<button class="tab-button">已拒绝</button>
+				<button class="tab-button">接收中</button>
+			</view>
+			<view class="content" v-for="item in items" :key="item.id">
+				<view class="card">
+					<view class="user-image">
+						<img :src="item.img" alt="" class="user-image" />
 					</view>
+					<view class="card-header">
+						<view class="card-title">{{ item.title }}</view>
+						<view class="card-body">
+							<view>{{ item.time }}</view>
+						</view>
+					</view>
+					<view class="card-status">{{ item.status }}</view>
 				</view>
 			</view>
 		</view>
+	</view>
 </template>
 
 <script setup>
@@ -87,7 +87,7 @@
 		display: block;
 		width: 30px;
 		height: 30px;
-		margin-top: 20px;
+		margin-top: 30px;
 		margin-left: 15px;
 		margin-bottom: 15px;
 		line-height: 30px;
