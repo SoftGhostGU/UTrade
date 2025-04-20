@@ -1,14 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 
 const skills = ref([])
+const skillIndex = ref(-1) // 添加跟踪选中技能的索引
+const customSkill = ref('') // 自定义技能输入
+
 const exchangeOptions = ref([])
+const exchangeIndex = ref(-1) // 添加跟踪选中交换项的索引
+const customExchange = ref('') // 自定义交换项输入
 
 const skillOptions = ["PR剪辑", "乒乓球", "摄影", "其他"]
 const exchangeItems = ["PR剪辑", "乒乓球", "摄影", "时间币", "其他"]
 const iconImages = ref([
- "https://img.icons8.com/badges/48/sport.png",
-  "https://img.icons8.com/color/50/sports.png" ,
+  "https://img.icons8.com/badges/48/sport.png",
+  "https://img.icons8.com/color/50/sports.png",
   "https://img.icons8.com/clouds/50/stack-of-photos.png",
   "https://img.icons8.com/ios-filled/50/salt-bae.png",
   "https://img.icons8.com/plasticine/100/ping-pong--v1.png",
@@ -16,6 +21,7 @@ const iconImages = ref([
   "https://img.icons8.com/emoji/48/martial-arts-uniform-emoji.png",
   "https://img.icons8.com/emoji/48/field-hockey-emoji.png"
 ])
+
 const iconColors = ref([
   "#FFB6C1",  
   "#87CEFA", 
@@ -26,14 +32,96 @@ const iconColors = ref([
   "#E0FFFF",  
   "#D3D3D3"   
 ])
+
+// 显示选择其他技能的输入框
+const showSkillInput = ref(false)
+// 显示选择其他交换项的输入框
+const showExchangeInput = ref(false)
+
+// 处理技能选择变化
+const handleSkillChange = (e) => {
+  skillIndex.value = e.detail.value[0] // 保存索引
+  skills.value = skillOptions[skillIndex.value] // 保存选中的值
+  
+  // 如果选择了"其他"，显示输入框并获得焦点
+  if (skillIndex.value === skillOptions.length - 1) {
+    showSkillInput.value = true
+    customSkill.value = ''
+    nextTick(() => {
+      skillInput.value.focus()
+    })
+  } else {
+    showSkillInput.value = false
+    customSkill.value = ''
+  }
+}
+
+// 处理交换项选择变化
+const handleExchangeChange = (e) => {
+  exchangeIndex.value = e.detail.value[0] // 保存索引
+  exchangeOptions.value = exchangeItems[exchangeIndex.value] // 保存选中的值
+  
+  // 如果选择了"其他"，显示输入框并获得焦点
+  if (exchangeIndex.value === exchangeItems.length - 1) {
+    showExchangeInput.value = true
+    customExchange.value = ''
+    nextTick(() => {
+      exchangeInput.value.focus()
+    })
+  } else {
+    showExchangeInput.value = false
+    customExchange.value = ''
+  }
+}
+
+// 重置技能选择，回到选择框
+const resetSkillSelection = () => {
+  showSkillInput.value = false
+  skillIndex.value = -1
+  customSkill.value = ''
+}
+
+// 重置交换项选择，回到选择框
+const resetExchangeSelection = () => {
+  showExchangeInput.value = false
+  exchangeIndex.value = -1
+  customExchange.value = ''
+}
+
+// 上传图片的数组
+const uploadedImages = ref([])
+
+// 上传图片的方法
 const uploadImage = () => {
-  // 这里用 chooseImage API 来模拟上传图片
   uni.chooseImage({
-    count: 1,
+    count: 9 - uploadedImages.value.length, // 最多可以上传9张图片
     success: (res) => {
-      console.log("上传成功：", res.tempFilePaths)
+      uploadedImages.value = [...uploadedImages.value, ...res.tempFilePaths]
     }
   })
+}
+
+// 删除上传的图片
+const deleteImage = (index) => {
+  uploadedImages.value.splice(index, 1)
+}
+
+// 获取要显示的技能文本
+const getSkillText = () => {
+  if (skillIndex.value === -1) return '选择技能'
+  if (skillIndex.value === skillOptions.length - 1 && customSkill.value) {
+    return customSkill.value
+  }
+  return skillOptions[skillIndex.value]
+}
+
+// 获取要显示的交换项文本
+const getExchangeText = () => {
+  if (exchangeIndex.value === -1) return '选择内容'
+  if (exchangeIndex.value === exchangeItems.length - 1 && customExchange.value) {
+    return customExchange.value
+  }
+  return exchangeItems[exchangeIndex.value]
 }
 </script>
 
@@ -49,51 +137,96 @@ const uploadImage = () => {
 
     <!-- 技能图标盒子 -->
     <view class="icon-box">
-  <!-- 使用图片路径数组循环渲染 -->
-  <view 
-    class="icon" 
-    v-for="(img, index) in iconImages" 
-    :key="index"
-    
-  >
-    <img 
-      :src="img" 
-      :alt="'icon-' + index"
-      class="icon-img"
-       :style="{ backgroundColor: iconColors[index] }"
-    />
-  </view>
-</view>
+      <!-- 使用图片路径数组循环渲染 -->
+      <view 
+        class="icon" 
+        v-for="(img, index) in iconImages" 
+        :key="index"
+      >
+        <img 
+          :src="img" 
+          :alt="'icon-' + index"
+          class="icon-img"
+          :style="{ backgroundColor: iconColors[index] }"
+        />
+      </view>
+    </view>
 
     <!-- 内容区域 -->
     <view class="skill-details">
       <!-- 技能 -->
       <view class="section">
         <text class="label">技能</text>
+        <!-- 正常选择框 - 在未选择"其他"时显示 -->
         <picker 
+          v-if="!showSkillInput"
           mode="multiSelector" 
           :range="[skillOptions]" 
-          @change="(e) => skills.value = e.detail.value">
-          <view class="picker">选择技能</view>
+          @change="handleSkillChange">
+          <view class="picker" :class="{ 'picker-selected': skillIndex !== -1 }">
+            {{ getSkillText() }}
+          </view>
         </picker>
+        
+        <!-- 如果选择了"其他"，直接显示输入框替代选择框 -->
+        <view v-else class="input-container">
+          <input 
+            ref="skillInput"
+            v-model="customSkill" 
+            class="custom-input" 
+            placeholder="请输入技能名称"
+            @blur="() => showSkillInput = false" 
+          />
+          <text class="reset-btn" @click="resetSkillSelection">×</text>
+        </view>
       </view>
 
       <!-- 想交换 -->
       <view class="section">
         <text class="label">想交换</text>
+        <!-- 正常选择框 - 在未选择"其他"时显示 -->
         <picker 
+          v-if="!showExchangeInput"
           mode="multiSelector" 
           :range="[exchangeItems]" 
-          @change="(e) => exchangeOptions.value = e.detail.value">
-          <view class="picker">选择内容</view>
+          @change="handleExchangeChange">
+          <view class="picker" :class="{ 'picker-selected': exchangeIndex !== -1 }">
+            {{ getExchangeText() }}
+          </view>
         </picker>
+        
+        <!-- 如果选择了"其他"，直接显示输入框替代选择框 -->
+        <view v-else class="input-container">
+          <input 
+            ref="exchangeInput"
+            v-model="customExchange" 
+            class="custom-input" 
+            placeholder="请输入交换内容"
+            @blur="() => showExchangeInput = false" 
+          />
+          <text class="reset-btn" @click="resetExchangeSelection">×</text>
+        </view>
       </view>
 
       <!-- 示例图上传 -->
       <view class="section">
         <text class="label">示例图</text>
-        <view class="upload-box" @click="uploadImage">
-          <text class="plus">+</text>
+        <view class="upload-container">
+          <view 
+            v-for="(image, index) in uploadedImages" 
+            :key="index" 
+            class="upload-box"
+            @click="deleteImage(index)"
+          >
+            <img :src="image" class="uploaded-image" />
+          </view>
+          <view 
+            v-if="uploadedImages.length < 9" 
+            class="upload-box" 
+            @click="uploadImage"
+          >
+            <text class="plus">+</text>
+          </view>
         </view>
       </view>
 
@@ -159,6 +292,7 @@ const uploadImage = () => {
   overflow: hidden; /* 隐藏溢出部分 */
   position: relative; /* 为图片定位提供参考 */
 }
+
 .icon-img {
   width: 100%;
   height: 100%;
@@ -166,6 +300,7 @@ const uploadImage = () => {
   border-radius: 0.5rem; /* 继承父容器圆角 */
   display: block; /* 消除图片底部间隙 */
 }
+
 .skill-details {
   width: 100%;
   height: calc(100vh - 10rem);
@@ -194,9 +329,48 @@ const uploadImage = () => {
   color: #888;
 }
 
+/* 添加选中状态的样式 */
+.picker-selected {
+  color: #000;
+  font-weight: 500;
+}
+
+/* 输入框容器 */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 自定义输入框样式 */
+.custom-input {
+  flex: 1;
+  background-color: #f5f5f6;
+  padding: 0.6rem;
+  border-radius: 1.5rem;
+  border: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+}
+
+/* 重置按钮 */
+.reset-btn {
+  position: absolute;
+  right: 0.8rem;
+  color: #888;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.upload-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .upload-box {
-  width: 6rem;
-  height: 6rem;
+  width: 5rem;
+  height: 5rem;
   border: 2px dashed #ccc;
   border-radius: 1rem;
   display: flex;
@@ -205,6 +379,35 @@ const uploadImage = () => {
   color: #888;
   font-size: 2rem;
   margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.plus {
+  z-index: 1;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .publish-btn {
