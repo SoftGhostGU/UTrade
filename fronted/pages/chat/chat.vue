@@ -1,0 +1,130 @@
+<template>
+	<div>
+		<Chat :chats="chats" :onChatsChange="handleChatsChange" :onMessageSend="handleMessageSend"
+			:uploadProps="uploadProps" :roleConfig="roleConfig" />
+	</div>
+</template>
+
+<script>
+	// import {
+	// 	ref,
+	// 	nextTick
+	// } from 'vue';
+	// import {
+	// 	Chat
+	// } from '@kousum/semi-ui-vue';
+	import { Chat, Radio, RadioGroup } from '@kousum/semi-ui-vue';
+	import { defineComponent, ref } from 'vue';
+
+	export default {
+		components: {
+			Chat
+		},
+		setup() {
+			const chats = ref([{
+					id: 1,
+					role: 'user',
+					content: 'Hello, how are you?',
+					createAt: Date.now(),
+				},
+				{
+					id: 2,
+					role: 'assistant',
+					content: 'I am good, thank you!',
+					createAt: Date.now(),
+				},
+			]);
+
+			// 设置用户和 AI 的头像
+			const roleConfig = {
+				user: {
+					name: 'User', // 用户名称
+					avatar: 'https://s21.ax1x.com/2025/03/02/pEGVjw4.jpg', // 用户头像的 URL
+					color: 'blue'
+				},
+				assistant: {
+					name: 'UTrade AI', // AI 名称
+					avatar: '/static/U_AIChat_ava.png', // AI 头像的 URL
+				},
+			};
+
+			const uploadProps = {
+				// 配置上传参数
+			};
+
+			const handleChatsChange = (newChats) => {
+				chats.value = newChats;
+			};
+
+			const handleMessageSend = async (content, attachments) => {
+				const newChat = {
+					id: chats.value.length,
+					role: 'user',
+					content,
+					attachments,
+					createAt: Date.now(),
+				};
+				console.log("newChat: ", newChat);
+
+				// 模拟 AI 回复
+				// await nextTick(); // 确保用户消息已经渲染到 DOM
+
+				// 添加一个 loading 状态的 AI 回复
+				const aiChatLoading = {
+					id: chats.value.length + 1,
+					role: 'assistant',
+					content: '',
+					status: 'loading', // 设置为 loading 状态
+					createAt: Date.now(),
+				};
+				chats.value.push(aiChatLoading);
+
+				// 模拟 AI 生成回复的延迟
+				await new Promise((resolve) => setTimeout(resolve, 2000)); // 延迟 2 秒
+
+				// 生成 AI 的最终回复
+				const aiResponse = generateAIResponse(content);
+
+				// 更新 AI 回复的内容和状态
+				const aiChatComplete = {
+					...aiChatLoading,
+					content: aiResponse,
+					status: 'complete', // 更新为 complete 状态
+				};
+
+				// 替换 loading 状态的 AI 回复
+				const index = chats.value.findIndex((chat) => chat.id === aiChatLoading.id);
+				if (index !== -1) {
+					chats.value.splice(index, 1, aiChatComplete);
+				}
+				console.log("AIChat: ", aiResponse)
+			};
+
+			// 模拟 AI 回复逻辑
+			const generateAIResponse = (userMessage) => {
+				// 这里可以根据用户消息生成不同的回复
+				if (userMessage.toLowerCase().includes('hello')) {
+					return 'Hi there! How can I help you today?';
+				} else if (userMessage.toLowerCase().includes('how are you')) {
+					return 'I am just a program, but I am functioning well. Thank you for asking!';
+				} else {
+					return 'I am not sure how to respond to that. Can you please clarify?';
+				}
+			};
+
+			return {
+				chats,
+				handleChatsChange,
+				handleMessageSend,
+				uploadProps,
+				roleConfig
+			};
+		},
+	};
+</script>
+
+<style>
+	.inputBoxStyle {
+		background-color: pink;
+	}
+</style>
