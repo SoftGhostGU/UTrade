@@ -1,53 +1,24 @@
 <script setup>
-	import {
-		ref
-	} from 'vue';
-
-	const searchText = ref('');
-
-	const skills = [{
-			cover: '/static/PR.png',
-			label: '推荐',
-			title: 'PR剪辑',
-			avater: '/static/PRer.png',
-			username: '张伟',
-		},
-		{
-			cover: '/static/pic.png',
-			label: '直播中',
-			title: '摄影',
-			avater: '/static/picer.png',
-			username: '李华',
-		},
-		{
-			cover: '/static/cook.png',
-			label: '热门',
-			title: '厨艺',
-			avater: '/static/cooker.png',
-			username: '赵敏',
-		},
-		{
-			cover: '/static/tatennis.png',
-			label: '推荐',
-			title: '乒乓球',
-			avater: '/static/tatenniser.png',
-			username: '王强',
-		},
-	];
+	import { ref } from 'vue';
+import { useSkillStore } from '@/store/skillStore' 
+import { storeToRefs } from 'pinia'
+const searchText = ref('');
+const skillStore = useSkillStore()
+const { skills } = storeToRefs(skillStore)
 
 	// 根据 label 设置背景色
 	const getLabelBackgroundColor = (label) => {
-		switch (label) {
-			case '热门':
-				return '#efc958';
-			case '直播中':
-				return '#f46d60';
-			case '推荐':
-				return '#4ac58e';
-			default:
-				return '#ccc'; // 默认背景色
-		}
-	};
+    switch (label) {
+        case '热门':
+            return '#efc958';
+        case '直播中':
+            return '#f46d60';
+        case '推荐':
+            return '#4ac58e';
+        default:
+            return '#ccc';
+    }
+};
 
 	const MessageNavigate = () => {
 		uni.navigateTo({
@@ -108,22 +79,22 @@
 
 			<!-- 热门技能展示 -->
 			<view class="skill-cards">
-				<view v-for="(skill, index) in skills" :key="index" class="card">
-					<view class="card-cover">
-						<image :src="skill.cover" mode="aspectFill" style="width: 100%; height: 200px;"></image>
-						<view class="card-label" :style="{ backgroundColor: getLabelBackgroundColor(skill.label) }">
-							{{ skill.label }}
-						</view>
-					</view>
-					<h4>{{ skill.title }}</h4>
-					<view class="profile">
-						<view class="avatar">
-							<img :src="skill.avater" style="width: 100%; height: 100%; border-radius: 50%;">
-						</view>
-						<span>{{ skill.username }}</span>
-					</view>
-				</view>
-			</view>
+    <view v-for="(skill, index) in skills" :key="index" class="card">
+        <view class="card-cover">
+            <image :src="skill.cover" mode="aspectFill" style="width: 100%; height: 200px;"></image>
+            <view class="card-label" :style="{ backgroundColor: getLabelBackgroundColor(skill.label) }">
+                {{ skill.label }}
+            </view>
+        </view>
+        <h4>{{ skill.title }}</h4>
+        <view class="profile">
+            <view class="avatar">
+                <img :src="skill.avater" style="width: 100%; height: 100%; border-radius: 50%;">
+            </view>
+            <span>{{ skill.username }}</span>
+        </view>
+    </view>
+</view>
 		</view>
 		<view class="chat" @click="jumpToChat">
 			<img src="/static/chat_icon.png" alt="chat" class="chat-img" />
