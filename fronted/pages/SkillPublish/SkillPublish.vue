@@ -1,9 +1,11 @@
 <script setup>
 import { ref, nextTick } from 'vue'
+import { useSkillStore } from '@/store/skillStore'
 
 const skills = ref([])
 const skillIndex = ref(-1) // 添加跟踪选中技能的索引
 const customSkill = ref('') // 自定义技能输入
+const skillStore = useSkillStore()
 
 const exchangeOptions = ref([])
 const exchangeIndex = ref(-1) // 添加跟踪选中交换项的索引
@@ -123,6 +125,46 @@ const getExchangeText = () => {
   }
   return exchangeItems[exchangeIndex.value]
 }
+
+// 发布处理函数
+const handlePublish = () => {
+    if (uploadedImages.value.length === 0) {
+        uni.showToast({
+            title: '请上传示例图片',
+            icon: 'none'
+        });
+        return;
+    }
+
+    if (skillIndex.value === -1) {
+        uni.showToast({
+            title: '请选择技能',
+            icon: 'none'
+        });
+        return;
+    }
+
+    const newSkill = {
+        imageUrl: uploadedImages.value[0],
+        skillTitle: getSkillText()
+    };
+    
+    // 使用 store 的方法添加技能
+    skillStore.addSkill(newSkill);
+    
+    uni.showToast({
+        title: '发布成功',
+        icon: 'success',
+        duration: 2000
+    });
+    
+    // 修改这里，改用 switchTab 跳转到 home 页
+    setTimeout(() => {
+        uni.switchTab({
+            url: '/pages/home/home'
+        });
+    }, 1500);
+};
 </script>
 
 <template>
@@ -231,7 +273,7 @@ const getExchangeText = () => {
       </view>
 
       <!-- 发布按钮 -->
-      <button class="publish-btn">立即发布</button>
+      <button class="publish-btn" @click="handlePublish">立即发布</button>
     </view>
   </view>
 </template>
