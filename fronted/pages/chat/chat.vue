@@ -25,7 +25,7 @@
 		defineComponent,
 		ref
 	} from 'vue';
-
+import '@kousum/semi-ui-vue/dist/_base/base.css'
 	export default {
 		components: {
 			Chat

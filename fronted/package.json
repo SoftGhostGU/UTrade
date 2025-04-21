@@ -11,6 +11,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@douyinfe/semi-ui": "^2.78.0",
     "@kousum/semi-ui-vue": "^2.78.4",
     "echarts": "^5.6.0",
     "uview-ui": "2.0.38"
