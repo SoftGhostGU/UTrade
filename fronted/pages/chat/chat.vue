@@ -1,4 +1,7 @@
 <template>
+	<view class="previous" @click="JumpBack">
+		<img src="/static/previous_icon_blue.png" alt="previous" class="previous-img" />
+	</view>
 	<div>
 		<Chat :chats="chats" :onChatsChange="handleChatsChange" :onMessageSend="handleMessageSend"
 			:uploadProps="uploadProps" :roleConfig="roleConfig" />
@@ -13,12 +16,27 @@
 	// import {
 	// 	Chat
 	// } from '@kousum/semi-ui-vue';
-	import { Chat, Radio, RadioGroup } from '@kousum/semi-ui-vue';
-	import { defineComponent, ref } from 'vue';
+	import {
+		Chat,
+		Radio,
+		RadioGroup
+	} from '@kousum/semi-ui-vue';
+	import {
+		defineComponent,
+		ref
+	} from 'vue';
 
 	export default {
 		components: {
 			Chat
+		},
+		methods: {
+			JumpBack() {
+				console.log("Jump Back.");
+				uni.switchTab({
+					url: '/pages/home/home'
+				})
+			}
 		},
 		setup() {
 			const chats = ref([{
@@ -126,5 +144,19 @@
 <style>
 	.inputBoxStyle {
 		background-color: pink;
+	}
+
+	.previous {
+		width: 30px;
+		height: 30px;
+		position: fixed;
+		left: 20px;
+		top: 20px;
+		z-index: 100;
+	}
+
+	.previous-img {
+		width: 30px;
+		height: 30px;
 	}
 </style>
