@@ -32,6 +32,26 @@ const { skills } = storeToRefs(skillStore)
 			url: '/pages/chat/chat'
 		});
 	};
+	const navigateToSkillInfo = (skill) => {
+    console.log('准备传递的技能信息:', skill);
+    
+    uni.navigateTo({
+        url: '/pages/SkillsInfo/SkillsInfo',
+        success: function(res) {
+            const data = {
+                image: skill.cover,
+                title: skill.title,
+                avatar: skill.avater,
+                username: skill.username
+            };
+            console.log('即将发送数据:', data);
+            res.eventChannel.emit('acceptSkillData', data);
+        },
+        fail: function(err) {
+            console.error('页面跳转失败:', err);
+        }
+    });
+};
 </script>
 
 <template>
@@ -79,7 +99,7 @@ const { skills } = storeToRefs(skillStore)
 
 			<!-- 热门技能展示 -->
 			<view class="skill-cards">
-    <view v-for="(skill, index) in skills" :key="index" class="card">
+    <view v-for="(skill, index) in skills" :key="index" class="card" @click="navigateToSkillInfo(skill)">
         <view class="card-cover">
             <image :src="skill.cover" mode="aspectFill" style="width: 100%; height: 200px;"></image>
             <view class="card-label" :style="{ backgroundColor: getLabelBackgroundColor(skill.label) }">
