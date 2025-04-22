@@ -1,19 +1,25 @@
 {
-  "hash": "21d96e2e",
+  "hash": "b099c57c",
   "configHash": "083e4f9a",
-  "lockfileHash": "38c884bd",
-  "browserHash": "26489981",
+  "lockfileHash": "9df18676",
+  "browserHash": "75472eb5",
   "optimized": {
-    "echarts": {
-      "src": "../../../../../node_modules/echarts/index.js",
-      "file": "echarts.js",
-      "fileHash": "fa41b893",
-      "needsInterop": false
-    },
     "@kousum/semi-ui-vue": {
       "src": "../../../../../node_modules/@kousum/semi-ui-vue/dist/index.js",
       "file": "@kousum_semi-ui-vue.js",
-      "fileHash": "c59f35b9",
+      "fileHash": "df5ca49f",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../../../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "87285903",
+      "needsInterop": false
+    },
+    "echarts": {
+      "src": "../../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "8a045630",
       "needsInterop": false
     }
   },
