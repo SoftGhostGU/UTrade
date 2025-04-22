@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 
 const skillInfo = ref({
     image: '',
@@ -8,58 +8,52 @@ const skillInfo = ref({
     username: ''
 });
 
+onMounted(() => {
+    try {
+        const data = uni.getStorageSync('currentSkillInfo');
+        if (data) {
+            console.log('从存储中获取的数据:', data);
+            skillInfo.value = data;
+        } else {
+            console.log('没有找到存储的技能数据');
+        }
+    } catch (e) {
+        console.error('获取存储数据时出错:', e);
+    }
+});
+
 const handleBack = () => {
     uni.navigateBack({
         delta: 1
     });
 };
-function onLoad(option) {
-    // 获取页面通道
-    const eventChannel = this.getOpenerEventChannel();
-    // 添加错误处理
-    try {
-        eventChannel.on('acceptSkillData', (data) => {
-            console.log('SkillsInfo 接收到数据:', data);
-            // 确保数据更新是响应式的
-            skillInfo.value = {
-                image: data.image,
-                title: data.title,
-                avatar: data.avatar,
-                username: data.username
-            };
-            console.log('更新后的 skillInfo:', skillInfo.value);
-        });
-    } catch (error) {
-        console.error('数据接收错误:', error);
-    }
-}
-defineExpose({
-    onLoad
-});
 </script>
 
 <template>
     <view class="total">
+        <!-- 返回按钮和标题 -->
         <view class="back">
             <img class="back-icon" @click="handleBack" width="40" height="40" 
                 src="https://img.icons8.com/badges/48/left.png" alt="left" />
             <text class="title">技能详情</text>
         </view>
 
+        <!-- 用户信息 -->
         <view class="info">
             <view class="user-profile">
-                <image class="avatar" :src="skillInfo.avatar" mode="aspectFill" />
+                <image class="avatar" :src="skillInfo.avatar || '/static/default-avatar.png'" mode="aspectFill" />
                 <view class="user-info">
                     <text class="certification">已认证</text>
-                    <text class="username">{{skillInfo.username}}</text>
+                    <text class="username">{{ skillInfo.username || '加载中...' }}</text>
                 </view>
             </view>
         </view>
 
+        <!-- 技能详情 -->
         <view class="skill-details">
             <view class="section">
                 <text class="label">技能</text>
-                <view class="skill-tag">{{skillInfo.title}}</view>
+                <view class="skill-tag">{{ skillInfo.title || '加载中...' }}</view>
             </view>
 
             <view class="section">
@@ -70,7 +64,7 @@ defineExpose({
             <view class="section">
                 <text class="label">示例图</text>
                 <image 
-                    :src="skillInfo.image" 
+                    :src="skillInfo.image || '/static/default-image.png'" 
                     mode="aspectFill" 
                     class="example-image"
                 />
