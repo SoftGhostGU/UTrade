@@ -35,21 +35,16 @@ const { skills } = storeToRefs(skillStore)
 	const navigateToSkillInfo = (skill) => {
     console.log('准备传递的技能信息:', skill);
     
+    // 将数据存储在全局状态中
+    uni.setStorageSync('currentSkillInfo', {
+        image: skill.cover,
+        title: skill.title,
+        avatar: skill.avater,
+        username: skill.username
+    });
+    
     uni.navigateTo({
-        url: '/pages/SkillsInfo/SkillsInfo',
-        success: function(res) {
-            const data = {
-                image: skill.cover,
-                title: skill.title,
-                avatar: skill.avater,
-                username: skill.username
-            };
-            console.log('即将发送数据:', data);
-            res.eventChannel.emit('acceptSkillData', data);
-        },
-        fail: function(err) {
-            console.error('页面跳转失败:', err);
-        }
+        url: '/pages/SkillsInfo/SkillsInfo'
     });
 };
 </script>
