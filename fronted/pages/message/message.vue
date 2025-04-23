@@ -9,6 +9,18 @@ const uploadImage = () => {
     }
   })
 }
+const guideToExchangeRequests = () => {
+  uni.navigateTo({ url: '/pages/ExchangeRequests/ExchangeRequests' })
+}
+const guideToSystemNotifications = () => {
+  uni.navigateTo({ url: '/pages/SystemNotifications/SystemNotifications' })
+}
+const guideToRewardReminders = () => {
+  uni.navigateTo({ url: '/pages/RewardReminders/RewardReminders' })
+}
+const guideToCommentReminders = () => {
+  uni.navigateTo({ url: '/pages/CommentReminders/CommentReminders' })
+}
 </script>
 
 
@@ -29,19 +41,19 @@ const uploadImage = () => {
       <!-- 内容区域 -->
       <view class="skill-details">
         <!-- 通知项列表 -->
-        <view class="notice-box">
+        <view class="notice-box" @click="guideToExchangeRequests">
           <img class="notice-icon" src="https://img.icons8.com/?size=100&id=qrlvHfwzH-EG&format=png&color=000000" alt="icon" style="background-color: white;" />
           <text class="notice-text">交换请求</text>
         </view>
-        <view class="notice-box">
+        <view class="notice-box" @click="guideToSystemNotifications">
           <img class="notice-icon" src="https://img.icons8.com/?size=100&id=11668&format=png&color=FFFFFF" alt="icon" style="background-color: black;"/>
           <text class="notice-text">系统通知</text>
         </view>
-        <view class="notice-box">
+        <view class="notice-box" @click="guideToRewardReminders">
             <img class="notice-icon" src="https://img.icons8.com/ios/50/FFFFFF/us-dollar-circled--v2.png" alt="icon" style="background-color: #f7b962;"/>
-          <text class="notice-text">回复提醒</text>
+          <text class="notice-text">奖励通知</text>
         </view>
-        <view class="notice-box">
+        <view class="notice-box" @click="guideToCommentReminders">
           <img class="notice-icon" src="https://img.icons8.com/?size=100&id=wcAdzrSxP9X7&format=png&color=000000" alt="icon" style="background-color: #e2e5f8;"/>
           <text class="notice-text">回复提醒</text>
         </view>
