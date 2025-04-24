@@ -22,10 +22,20 @@ onMounted(() => {
     }
 });
 
-const handleBack = () => {
-    uni.navigateBack({
-        delta: 1
+const handleExchange = () => {
+    // 显示提示框
+    uni.showToast({
+        title: '已发起交换',
+        icon: 'success',
+        duration: 1500
     });
+    
+    // 1.5秒后返回首页
+    setTimeout(() => {
+        uni.switchTab({
+            url: '/pages/home/home'
+        });
+    }, 1000);
 };
 </script>
 
@@ -70,7 +80,7 @@ const handleBack = () => {
                 />
             </view>
 
-            <button class="exchange-btn">发起交换</button>
+            <button class="exchange-btn" @click="handleExchange">发起交换</button>
         </view>
     </view>
 </template>
