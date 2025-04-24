@@ -37,6 +37,11 @@ const handleExchange = () => {
         });
     }, 1000);
 };
+const handleBack = () => {
+        uni.switchTab({
+            url: '/pages/home/home'
+        });
+};
 </script>
 
 <template>
