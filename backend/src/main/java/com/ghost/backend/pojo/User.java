@@ -10,10 +10,6 @@ public class User {
 
     private int userId;
 
-    @NotNull(message = "OpenID 不能为空")
-    @Size(max = 255, message = "OpenID 不能超过 255 个字符")
-    private String openID;
-
     @NotNull(message = "Nickname 不能为空")
     @Size(max = 255, message = "Nickname 不能超过 255 个字符")
     private String nickname;
@@ -34,9 +30,8 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String openID, String nickname, String avatarURL, String email, String password, Timestamp registrationDate) {
+    public User(int userId, String nickname, String avatarURL, String email, String password, Timestamp registrationDate) {
         this.userId = userId;
-        this.openID = openID;
         this.nickname = nickname;
         this.avatarURL = avatarURL;
         this.email = email;
@@ -58,22 +53,6 @@ public class User {
      */
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    /**
-     * 获取
-     * @return openID
-     */
-    public String getOpenID() {
-        return openID;
-    }
-
-    /**
-     * 设置
-     * @param openID
-     */
-    public void setOpenID(String openID) {
-        this.openID = openID;
     }
 
     /**
@@ -157,6 +136,6 @@ public class User {
     }
 
     public String toString() {
-        return "User{userId = " + userId + ", openID = " + openID + ", nickname = " + nickname + ", avatarURL = " + avatarURL + ", email = " + email + ", password = " + password + ", registrationDate = " + registrationDate + "}";
+        return "User{userId = " + userId + ", nickname = " + nickname + ", avatarURL = " + avatarURL + ", email = " + email + ", password = " + password + ", registrationDate = " + registrationDate + "}";
     }
 }
