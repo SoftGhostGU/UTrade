@@ -76,7 +76,7 @@
 			title: '技能',
 			time: '2025/4/17',
 			status: '已拒绝',
-			img: 'https://s21.ax1x.com/2025/03/02/pEGVjw4.jpg',
+			img: 'https://s21.ax1x.com/2025/04/24/pEoUQMD.jpg',
 			balance: 0,
 		},
 		{
@@ -84,7 +84,7 @@
 			title: '历史',
 			time: '2025/4/17',
 			status: '已接受',
-			img: 'https://s21.ax1x.com/2025/03/02/pEGVjw4.jpg',
+			img: 'https://s21.ax1x.com/2025/04/24/pEoU8Zd.jpg',
 			balance: 50,
 		}
 	]);
