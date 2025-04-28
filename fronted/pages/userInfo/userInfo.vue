@@ -60,12 +60,12 @@
 			<view class="card-item" @click="jumpToMyCoin">
 				<img src="/static/transaction_icon.png" alt="transaction" class="card-img" />
 				<text class="card-title">我的交换记录</text>
-				<text class="card-subtitle">76250条</text>
+				<text class="card-subtitle">3条</text>
 			</view>
 			<view class="card-item" @click="jumpToBalance">
 				<img src="/static/coin_icon.png" alt="balance" class="card-img" />
 				<text class="card-title">时间币余额</text>
-				<text class="card-subtitle">202个</text>
+				<text class="card-subtitle">100个</text>
 			</view>
 			<view class="card-item-chart">
 				<LineChart class="line-chart"/>
